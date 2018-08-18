@@ -1,0 +1,68 @@
+<header>
+  <div class="container-fluid food-center">
+    <!--<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>-->
+    <a [routerLink]="['/']" class="white pull-left"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    <span class="food-center">FoOdSpOt </span>
+
+    <div class="login pull-right" *ngIf="this.user;else login">
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Account
+          <span class="caret"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="container">
+  <div class="row search-box">
+    <div class="col-xs-12 col-sm-4">
+      <input [(ngModel)]="term" placeholder="Search" class="term_seach_input_field form-control">
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <input [(ngModel)]="location" placeholder="Location" class="location_]seach_input_field form-control">
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <button (click)="SearchBusiness(term,location)"
+              class="btn btn-primary btn-block search_button">
+          <span class="glyphicon glyphicon-search">
+          </span>
+        Search
+      </button>
+    </div>
+  </div>
+  <div class="search-results">
+    <div class="row search-row" *ngFor="let business of businesses">
+      <div class="image-container col-xs-3 col-sm-offset-2 col-sm-2">
+        <a [routerLink]="['/business',business.id]">
+          <img class="business_image thumbnail" src="{{business['image_url']}}" />
+        </a>
+      </div>
+      <div class="col-xs-5 col-sm-4">
+        <a [routerLink]="['/business',business.id]">
+          {{business['name']}}
+        </a>
+        <div>
+          <!--<rating [(ngModel)]="business['rating']"-->
+                  <!--readonly="true"-->
+                  <!--[float]="true">-->
+          <!--</rating>-->
+          <span class="reviews">Reviews: {{business.review_count}}</span>
+          <div class="price">{{business.price}}</div>
+          <!--<div class="categories">{{categories(restaurant.categories)}} </div>-->
+        </div>
+      </div>
+      <div class="col-xs-4 col-sm-2">
+        {{business['location'].address1}}
+        {{business['location'].address2}}
+        {{business['location'].city}}
+        {{business['location'].zip_code}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="food-right">
+    <p><b>© Abhishek Kshitij</b></p>
+  </div>
+</footer>

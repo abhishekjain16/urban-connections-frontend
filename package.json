@@ -23,7 +23,18 @@
     "@angular/router": "^4.2.4",
     "core-js": "^2.4.1",
     "rxjs": "^5.4.2",
-    "zone.js": "^0.8.14"
+    "zone.js": "^0.8.14",
+    "@ngui/map": "^0.20.0",
+    "@types/googlemaps": "^3.30.0",
+    "body-parser": "^1.18.2",
+    "bootstrap": "^3.3.7",
+    "cookie-parser": "^1.4.3",
+    "http": "0.0.0",
+    "ng2-carouselamos": "^3.2.0",
+    "ng2-rating": "0.0.7",
+    "ngx-loading": "^1.0.9",
+    "parse-glob": "^3.0.4",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "@angular/cli": "1.4.10",
