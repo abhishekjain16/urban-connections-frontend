@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  registerComponent() {
+  register() {
     this.username = this.registerForm.value.username;
     this.password = this.registerForm.value.password;
     this.verifyPassword = this.registerForm.value.verifyPassword;
@@ -34,10 +34,9 @@ export class RegisterComponent implements OnInit {
     const user  = {
       username: this.username,
       password: this.password,
-      firstName: this.firstName,
-      lastName: this.lastName,
+      first_name: this.firstName,
+      last_name: this.lastName,
       email: this.email,
-      active: true,
       type: 'Customer'
     };
 

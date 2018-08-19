@@ -43,7 +43,7 @@ export class ProfileComponent implements OnInit {
     this.user['email'] = this.profileForm.value.email;
     this.user['firstName'] = this.profileForm.value.first_name;
     this.user['lastName'] = this.profileForm.value.last_name;
-    this.userService.updateUser(this.user)
+    this.userService.updateUser(this.user['id'], this.user)
       .subscribe(
         (user: any) => {
           this.errorFlag = false;

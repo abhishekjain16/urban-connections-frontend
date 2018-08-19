@@ -1,0 +1,52 @@
+
+<div class="container-fluid">
+  <ul class="nav nav-tabs nav-justified">
+    <li role="presentation"><a [routerLink]="['/admin/user']">Customers</a></li>
+    <li role="presentation" class="active"><a [routerLink]="['/admin/business']">businesses</a></li>
+    <li role="presentation"><a [routerLink]="['/admin/order']">Orders</a></li>
+  </ul>
+
+  <h3 class="text-center">Edit Business {{business.name}}</h3>
+  <form (ngSubmit) = "update()" #f="ngForm">
+    <div class="container-fluid profile clearfix">
+      <label for="name" class="label">Name</label>
+      <input type="text"
+             id="name"
+             name="name"
+             [(ngModel)]="name"
+             class="form-control" />
+
+      <label for="minimum_order_charge" class="label">Minimum Order</label>
+      <input type="text"
+             id="minimum_order_charge"
+             name="minimum_order_charge"
+             [(ngModel)]="minimum_order_charge"
+             class="form-control" />
+
+      <label for="service_charge" class="label">Service Charge</label>
+      <input type="text"
+             id="service_charge"
+             name="service_charge"
+             [(ngModel)]="service_charge"
+             class="form-control" />
+
+      <label for="website" class="label">Website</label>
+      <input type="text"
+             id="website"
+             name="website"
+             [(ngModel)]="website"
+             class="form-control" />
+
+      <div *ngIf="!this.businessId">
+        <label for="active" class="label">Active?</label>
+        <input type="checkbox"
+               id="active"
+               name="active"
+               [(ngModel)]="active">
+      </div>
+      <button type="submit"
+              class="btn btn-primary form-control"
+              [disabled]="!f.valid">Update Business</button>
+    </div>
+  </form>
+</div>

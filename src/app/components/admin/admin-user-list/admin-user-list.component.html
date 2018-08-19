@@ -1,0 +1,43 @@
+
+<div class="container-fluid">
+  <ul class="nav nav-tabs nav-justified">
+    <li role="presentation" class="active"><a [routerLink]="['/admin/user']">Customers</a></li>
+    <li role="presentation"><a [routerLink]="['/admin/business']">Businesses</a></li>
+  </ul>
+  <ul class="list-group">
+    <li class="list-group-item active">
+      <div class="row">
+        <div class="col-xs-9 col-sm-6 col-md-3">
+          Name
+        </div>
+        <div class="col-md-3 hidden-sm hidden-xs">
+          Email
+        </div>
+        <div class="col-sm-3 col-md-3 hidden-xs">
+          Username
+        </div>
+        <div class="col-xs-3">
+        </div>
+      </div>
+    </li>
+
+    <li class="list-group-item" *ngFor="let user of users">
+      <div class="row">
+        <div class="col-xs-9 col-sm-6 col-md-3">
+          {{user.first_name}} {{user.last_name}}
+        </div>
+        <div class="col-md-3 hidden-sm hidden-xs">
+          {{user.email}}
+        </div>
+        <div class="col-sm-3 col-md-3 hidden-xs">
+          {{user.username}}
+        </div>
+        <div class="col-xs-3">
+          <a class="pull-right" [routerLink]="['/admin', 'customer', user.id]">
+            <span class="glyphicon glyphicon-edit"></span>
+          </a>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

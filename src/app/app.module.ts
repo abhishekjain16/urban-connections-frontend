@@ -18,6 +18,10 @@ import { ProfileComponent } from './components/user/profile/profile.component';
 import {SharedService} from './services/shared.service';
 import {AuthGuard} from './services/auth-guard.service';
 import { StorageServiceModule} from 'angular-webstorage-service';
+import { AdminUserListComponent } from './components/admin/admin-user-list/admin-user-list.component';
+import { AdminUserDetailComponent } from './components/admin/admin-user-detail/admin-user-detail.component';
+import { AdminBusinessDetailComponent } from './components/admin/admin-business-detail/admin-business-detail.component';
+import { AdminBusinessListComponent } from './components/admin/admin-business-list/admin-business-list.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,11 @@ import { StorageServiceModule} from 'angular-webstorage-service';
     BusinessSearchComponent,
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    AdminUserListComponent,
+    AdminUserDetailComponent,
+    AdminBusinessDetailComponent,
+    AdminBusinessListComponent
   ],
   imports: [
     HttpModule,

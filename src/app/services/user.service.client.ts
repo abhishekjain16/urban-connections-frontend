@@ -4,7 +4,7 @@ import 'rxjs/Rx';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import {SharedService} from './shared.service';
-import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
+import { SESSION_STORAGE, WebStorageService } from 'angular-webstorage-service';
 
 // injecting service into module
 @Injectable()
@@ -14,7 +14,7 @@ export class UserServiceClient {
   constructor(private http: Http,
               private sharedService: SharedService,
               private router: Router,
-              @Inject(SESSION_STORAGE) private storage: StorageService) {
+              @Inject(SESSION_STORAGE) private storage: WebStorageService) {
   }
 
   baseUrl = environment.baseUrl;
@@ -30,17 +30,23 @@ export class UserServiceClient {
   };
 
   createUser(user: any) {
-    return this.http.post(this.baseUrl + '/api/users/', user)
+    return this.http.post(this.baseUrl + '/api/users/', {user: user})
       .map(
         (res: Response) => {
           const data = res.json();
+          this.storage.set('access_token', data['access_token']);
           return data;
         }
       );
   }
 
   findUserById(userId: string) {
-    return this.http.get(this.baseUrl + '/api/users/' + userId)
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
+    this.options.headers = headers;
+
+    return this.http.get(this.baseUrl + '/api/users/' + userId, this.options)
       .map(
         (res: Response) => {
           const data = res.json();
@@ -60,14 +66,12 @@ export class UserServiceClient {
   }
 
 
-  updateUser(user: any) {
+  updateUser(id: String, user: any) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    headers.append('authentication', 'Token token=' + this.storage.get('access_token'));
-
-    const options = new RequestOptions({headers: headers});
-
-    return this.http.put(this.baseUrl + '/api/users/', user, options)
+    headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
+    this.options.headers = headers;
+    return this.http.put(this.baseUrl + '/api/users/' + id, user, this.options)
       .map(
         (res: Response) => {
           const data = res.json();
@@ -87,7 +91,12 @@ export class UserServiceClient {
   }
 
   findUsersByRole(role: string) {
-    return this.http.get(this.baseUrl + '/api/user?role=' + role)
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
+    this.options.headers = headers;
+
+    return this.http.get(this.baseUrl + '/api/admin/users?role=' + role, this.options)
       .map(
         (res: Response) => {
           const data = res.json();
@@ -136,12 +145,12 @@ export class UserServiceClient {
       .map(
         (res: Response) => {
           const user = res.json();
-          if (user !== 0) {
-            this.sharedService.user = user;
-            return true;
-          } else {
+          if (user['error']) {
             this.router.navigate(['/login']);
             return false;
+          } else {
+            this.sharedService.user = user;
+            return true;
           }
         }
       );
