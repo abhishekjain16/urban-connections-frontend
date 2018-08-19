@@ -19,6 +19,8 @@ import {OwnerStaffNewComponent} from './components/owner/owner-staff-new/owner-s
 import {OwnerServiceListComponent} from './components/owner/owner-service-list/owner-service-list.component';
 import {OwnerServiceNewComponent} from './components/owner/owner-service-new/owner-service-new.component';
 import {OwnerServiceDetailComponent} from './components/owner/owner-service-detail/owner-service-detail.component';
+import {StaffOrderDetailComponent} from './components/staff/staff-order-detail/staff-order-detail.component';
+import {StaffOrderListComponent} from './components/staff/staff-order-list/staff-order-list.component';
 
 const APP_ROUTES: Routes = [
   {path: '', component : BusinessSearchComponent},
@@ -39,6 +41,8 @@ const APP_ROUTES: Routes = [
   {path: 'owner/business/:businessId/service', component: OwnerServiceListComponent, canActivate: [AuthGuard]},
   {path: 'owner/business/:businessId/service/new', component: OwnerServiceNewComponent, canActivate: [AuthGuard]},
   {path: 'owner/business/:businessId/service/:id', component: OwnerServiceDetailComponent, canActivate: [AuthGuard]},
+  {path: 'staff/order', component:StaffOrderListComponent, canActivate:[AuthGuard]},
+  {path: 'staff/order/:orderId/staff/:id', component:StaffOrderDetailComponent, canActivate:[AuthGuard]},
 ];
 
 // Export the routes as module providers
