@@ -1,0 +1,53 @@
+<header>
+  <div class="container-fluid food-center">
+
+    <a [routerLink]="['/']" class="white pull-left"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    <span class="food-center">UC</span>
+    <!--<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>-->
+
+    <div class="login pull-right">
+      <div class="pull-right">
+        <a [routerLink]="['/register']" class="btn btn-primary btn-lg">
+          Sign Up
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="container-fluid">
+  <div *ngIf="errorFlag"
+       class="alert alert-danger">
+    {{errorMsg}}
+  </div>
+  <h1>Login</h1>
+
+  <form (ngSubmit) = "login()" #f="ngForm">
+
+    <input type="text"
+           name="username"
+           class="form-control"
+           ngModel
+           required
+           #username="ngModel"
+           placeholder="Username" />
+    <span class="help-block" *ngIf="!username.valid && username.touched">
+      Please enter username!
+    </span>
+
+    <input type="password"
+           name="password"
+           ngModel
+           #password="ngModel"
+           required
+           class="form-control"
+           placeholder="Password" />
+    <button class="btn btn-primary btn-block"
+            type="submit"
+            [disabled]="!f.valid">Login</button>
+
+    <a [routerLink]= "['/register']" class="btn btn-success btn-block">Register</a>
+  </form>
+</div>
+<footer>
+</footer>
+

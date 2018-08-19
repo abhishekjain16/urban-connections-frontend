@@ -3,11 +3,18 @@ import {ModuleWithProviders} from '@angular/core';
 import {BusinessDetailComponent} from './components/business.detail/business.detail.component';
 import {BusinessListComponent} from './components/business.list/business.list.component';
 import {BusinessSearchComponent} from './components/business.search/business.search.component';
+import {LoginComponent} from './components/user/login/login.component';
+import {RegisterComponent} from './components/user/register/register.component';
+import {ProfileComponent} from './components/user/profile/profile.component';
+import {AuthGuard} from './services/auth-guard.service';
 
 const APP_ROUTES: Routes = [
   {path: '', component : BusinessSearchComponent},
   {path: 'business/:businessId', component: BusinessDetailComponent},
   {path: 'search', component: BusinessListComponent},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
   // {path: 'orders', component: UserOrderListComponent, canActivate: [AuthGuard]},
   // {path: 'restaurant/:restaurantId/order/:orderId', component: OrderDetailComponent, canActivate: [AuthGuard]},
   // {path: 'restaurant/:restaurantId/order/:orderId/checkout', component: OrderCheckoutComponent, canActivate: [AuthGuard]},
