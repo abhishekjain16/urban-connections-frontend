@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (data: any) => {
           this.sharedService.user = data;
-          this.role = this.sharedService.user['role'];
+          this.role = this.sharedService.user['type'];
           this.loading = false;
           if (this.role === 'Owner') {
             this.router.navigate(['owner/business/']);

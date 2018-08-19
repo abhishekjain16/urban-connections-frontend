@@ -42,12 +42,12 @@ export class BusinessServiceClient {
       );
   }
 
-  findBusinessById(id: String) {
+  findBusinessById(id: String, namespace: String) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
     this.options.headers = headers;
-    const url = environment.baseUrl + '/api/admin/business/' + id;
+    const url = environment.baseUrl + '/api/' + namespace + '/business/' + id;
     return this.http.get(url, this.options)
       .map((response: Response) => {
         return response.json();
@@ -89,6 +89,18 @@ export class BusinessServiceClient {
     headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
     this.options.headers = headers;
     const url = environment.baseUrl + '/api/admin/business';
+    return this.http.get(url, this.options)
+      .map((response: Response) => {
+        return response.json();
+      });
+  }
+
+  findBusinessesByOwner() {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
+    this.options.headers = headers;
+    const url = environment.baseUrl + '/api/owner/business';
     return this.http.get(url, this.options)
       .map((response: Response) => {
         return response.json();

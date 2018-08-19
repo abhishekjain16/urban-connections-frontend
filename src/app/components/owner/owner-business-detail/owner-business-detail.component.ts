@@ -5,13 +5,12 @@ import {BusinessServiceClient} from '../../../services/business.service.client';
 import {NgForm} from '@angular/forms';
 
 @Component({
-  selector: 'app-admin-business-detail',
-  templateUrl: './admin-business-detail.component.html',
-  styleUrls: ['./admin-business-detail.component.css']
+  selector: 'app-owner-business-detail',
+  templateUrl: './owner-business-detail.component.html',
+  styleUrls: ['./owner-business-detail.component.css']
 })
-export class AdminBusinessDetailComponent implements OnInit {
+export class OwnerBusinessDetailComponent implements OnInit {
   @ViewChild('f') profileForm: NgForm;
-
   business = {};
   user = {};
   owner = {};
@@ -29,7 +28,7 @@ export class AdminBusinessDetailComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.sharedService.user;
-    if (this.user['type'] !== 'Admin') {
+    if (this.user['type'] !== 'Owner') {
       this.router.navigate(['/']);
     }
     this.activatedRoute.params
@@ -38,7 +37,7 @@ export class AdminBusinessDetailComponent implements OnInit {
           this.businessId = params['id'];
         }
       );
-    this.businessService.findBusinessById(this.businessId, 'admin')
+    this.businessService.findBusinessById(this.businessId, 'owner')
       .subscribe(
         (business: any) => {
           this.business = business;

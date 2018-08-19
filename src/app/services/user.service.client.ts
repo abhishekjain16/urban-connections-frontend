@@ -117,7 +117,7 @@ export class UserServiceClient {
       .map(
         (res: Response) => {
           const data = res.json();
-          this.storage.set('access_token', data['token']);
+          this.storage.set('access_token', data['access_token']);
           return data;
         }
       );

@@ -22,6 +22,14 @@ import { AdminUserListComponent } from './components/admin/admin-user-list/admin
 import { AdminUserDetailComponent } from './components/admin/admin-user-detail/admin-user-detail.component';
 import { AdminBusinessDetailComponent } from './components/admin/admin-business-detail/admin-business-detail.component';
 import { AdminBusinessListComponent } from './components/admin/admin-business-list/admin-business-list.component';
+import { OwnerBusinessListComponent } from './components/owner/owner-business-list/owner-business-list.component';
+import { OwnerBusinessDetailComponent } from './components/owner/owner-business-detail/owner-business-detail.component';
+import { OwnerStaffListComponent } from './components/owner/owner-staff-list/owner-staff-list.component';
+import { OwnerStaffDetailComponent } from './components/owner/owner-staff-detail/owner-staff-detail.component';
+import { OwnerStaffNewComponent } from './components/owner/owner-staff-new/owner-staff-new.component';
+import { OwnerServiceListComponent } from './components/owner/owner-service-list/owner-service-list.component';
+import { OwnerServiceDetailComponent } from './components/owner/owner-service-detail/owner-service-detail.component';
+import { OwnerServiceNewComponent } from './components/owner/owner-service-new/owner-service-new.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +43,15 @@ import { AdminBusinessListComponent } from './components/admin/admin-business-li
     AdminUserListComponent,
     AdminUserDetailComponent,
     AdminBusinessDetailComponent,
-    AdminBusinessListComponent
+    AdminBusinessListComponent,
+    OwnerBusinessListComponent,
+    OwnerBusinessDetailComponent,
+    OwnerStaffListComponent,
+    OwnerStaffDetailComponent,
+    OwnerStaffNewComponent,
+    OwnerServiceListComponent,
+    OwnerServiceDetailComponent,
+    OwnerServiceNewComponent
   ],
   imports: [
     HttpModule,
