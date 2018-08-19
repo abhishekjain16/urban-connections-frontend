@@ -30,6 +30,8 @@ import { OwnerStaffNewComponent } from './components/owner/owner-staff-new/owner
 import { OwnerServiceListComponent } from './components/owner/owner-service-list/owner-service-list.component';
 import { OwnerServiceDetailComponent } from './components/owner/owner-service-detail/owner-service-detail.component';
 import { OwnerServiceNewComponent } from './components/owner/owner-service-new/owner-service-new.component';
+import { StaffOrderListComponent } from './components/staff/staff-order-list/staff-order-list.component';
+import { StaffOrderDetailComponent } from './components/staff/staff-order-detail/staff-order-detail.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { OwnerServiceNewComponent } from './components/owner/owner-service-new/o
     OwnerStaffNewComponent,
     OwnerServiceListComponent,
     OwnerServiceDetailComponent,
-    OwnerServiceNewComponent
+    OwnerServiceNewComponent,
+    StaffOrderListComponent,
+    StaffOrderDetailComponent
   ],
   imports: [
     HttpModule,
