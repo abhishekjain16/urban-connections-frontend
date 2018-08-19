@@ -34,7 +34,7 @@
     <div class="row search-row" *ngFor="let business of businesses">
       <div class="image-container col-xs-3 col-sm-offset-2 col-sm-2">
         <a [routerLink]="['/business',business.id]">
-          <img class="business_image thumbnail" src="{{business['image_url']}}" />
+          <img class="business_image thumbnail" width="180" src="{{business['image_url']}}" />
         </a>
       </div>
       <div class="col-xs-5 col-sm-4">
@@ -46,8 +46,8 @@
                   <!--readonly="true"-->
                   <!--[float]="true">-->
           <!--</rating>-->
-          <span class="reviews">Reviews: {{business.review_count}}</span>
-          <div class="price">{{business.price}}</div>
+          <span class="reviews">Number of Reviews: {{business.review_count}}</span>
+          <div class="price">Price Range: {{business.price}}</div>
           <!--<div class="categories">{{categories(restaurant.categories)}} </div>-->
         </div>
       </div>
@@ -56,6 +56,9 @@
         {{business['location'].address2}}
         {{business['location'].city}}
         {{business['location'].zip_code}}
+      </div>
+        <div class="col-xs-4 col-sm-40">
+        Phone:{{business.phone}}
       </div>
     </div>
   </div>

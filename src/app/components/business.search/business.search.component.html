@@ -1,4 +1,65 @@
-<div class="search-home">
+<nav class="navbar navbar-default navbar-inverse" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">B-YELP</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><p class="navbar-text">Already have an account?</p></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+			<ul id="login-dp" class="dropdown-menu">
+				<li>
+					 <div class="row">
+							<div class="col-md-12">
+
+								 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+										<div class="form-group">
+											 <label class="sr-only" for="exampleInputEmail2">Email address</label>
+											 <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+										</div>
+										<div class="form-group">
+											 <label class="sr-only" for="exampleInputPassword2">Password</label>
+											 <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                                             <div class="help-block text-right"><a href="">Forget the password ?</a></div>
+										</div>
+										<div class="form-group">
+											 <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+										</div>
+										<div class="checkbox">
+											 <label>
+											 <input type="checkbox"> keep me logged-in
+											 </label>
+										</div>
+								 </form>
+							</div>
+							<div class="bottom text-center">
+								Create An Account! <a href="#"><b>Join Us</b></a>
+							</div>
+					 </div>
+				</li>
+			</ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="forbg">
+<div class="container">
+  <div class="page-header">
+    <h1 id="timeline">BELP- A Yelp Clone</h1>
+  </div>
+
   <div class="container">
 
     <div class="row search-box">
@@ -18,55 +79,126 @@
       </div>
     </div>
   </div>
+
+  <h2 class="text-center text-primary">Simple steps to Order online</h2>
+  <ul class="timeline">
+
+    <li>
+      <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
+      <div class="timeline-panel">
+        <div class="timeline-heading">
+          <h4 class="timeline-title">Search  your Required Business online with location</h4>
+        </div>
+        <div class="timeline-body">
+
+          <span class="glyphicon glyphicon-search home"></span>
+          <p>Just Enter Name of the service and the location. We'll search it for you in a blink!</p>
+        </div>
+      </div>
+    </li>
+    <li class="timeline-inverted">
+      <div class="timeline-badge warning"><i class="glyphicon glyphicon-check"></i></div>
+      <div class="timeline-panel">
+        <div class="timeline-heading">
+          <h4 class="timeline-title"> Add your service Details. Anything! Anywhere!</h4>
+        </div>
+        <div class="timeline-body">
+                <span class="glyphicon glyphicon-shopping-cart home"></span>
+
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="timeline-badge danger"><i class="glyphicon glyphicon-check"></i></div>
+      <div class="timeline-panel">
+        <div class="timeline-heading">
+          <h4 class="timeline-title">  Enter your delivery address. Click Complete Order.
+            All Set!</h4>
+        </div>
+        <div class="timeline-body">
+          <span class="glyphicon glyphicon-map-marker home"></span>
+          <p></p>
+          </div>
+      </div>
+    </li>
+
+
+    <li class="timeline-inverted">
+        <div class="timeline-badge danger"><i class="glyphicon glyphicon-credit-card"></i></div>
+      <div class="timeline-panel">
+        <div class="timeline-heading">
+          <h4 class="timeline-title">Pay Online or by Cash</h4>
+        </div>
+        <div class="timeline-body">
+          <p>Pay for your services either online or by Cash!</p>
+        </div>
+      </div>
+    </li>
+  </ul>
 </div>
-<div>
-  <nav class="text-center">
-    <ul class="home">
-      <li>
-        <img src="http://www.yarlolaigifts.com/image/cache/catalog/Products/FoodAndWine/Food/Cosy/Chinese-Chicken-Noodle-220x220_0.png" alt="Chinese">
-        <span>Chinese</span>
-      </li>
-      <li>
-        <img src="http://eatmorefellinis.com/communities/5/000/001/377/115//images/4032063.jpg" alt="Pizza">
-        <span>Pizza</span>
-      </li>
-      <li>
-        <img src="http://www.myserviceprofile.com/clientimages/Photo_25967_1.jpg" alt="Thai">
-        <span>Thai</span>
-      </li>
-      <li>
-        <img src="http://sushiworldoc.com/sites/default/files/styles/medium/public/Orange-County-Sushi-World-OC-Unique-Custom-Sushi-Rolls-Avocado-Albacore-Tuna-Sesame-Seeds.jpg?itok=aYlnfJn_" alt="Sushi">
-        <span>Sushi</span>
-      </li>
-      <li>
-        <img src="http://line-around.com/wp-content/uploads/2015/04/3304382-indian-food-001-220x220.jpg" alt="Indian">
-        <span>Indian</span>
-      </li>
-    </ul>
-  </nav>
-  <div class="container how-to">
-    <h2 class="text-center text-primary">Simple steps to Order online</h2>
-    <br/>
-    <div class="row">
-      <div class="col-xs-12 col-sm-4 text-center">
-        <span class="glyphicon glyphicon-search home"></span>
-        <div class="home-desc">
-          Search for your favorite Restaurant online with location
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-4 text-center">
-        <span class="glyphicon glyphicon-shopping-cart home"></span>
-        <div class="home-desc">
-          Add Items to your card from the restaurant menu
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-4 text-center">
-        <span class="glyphicon glyphicon-map-marker home"></span>
-        <div class="home-desc">
-          Enter your delivery address. Click Complete Order.
-          All Set!
-        </div>
-      </div>
+
+
+<div class="container">
+  <div class="row">
+    <div class='col-md-offset-2 col-md-8 text-center'>
+    <h2>Testimonials </h2>
     </div>
   </div>
+  <div class='row'>
+    <div class='col-md-offset-2 col-md-8'>
+      <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+        <!-- Bottom Carousel Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#quote-carousel" data-slide-to="0" class="active"></li>
+          <li data-target="#quote-carousel" data-slide-to="1"></li>
+          <li data-target="#quote-carousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Carousel Slides / Quotes -->
+        <div class="carousel-inner">
+
+          <!-- Quote 1 -->
+          <div class="item active">
+            <blockquote>
+              <div class="row">
+                <div class="col-sm-3 text-center">
+                  <img class="img-circle" src="http://www.reactiongifs.com/r/overbite.gif" style="width: 100px;height:100px;">
+                  <!--<img class="img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/kolage/128.jpg" style="width: 100px;height:100px;">-->
+                </div>
+                <div class="col-sm-9">
+                  <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit!</p>
+                  <small>Someone famous</small>
+                </div>
+              </div>
+            </blockquote>
+          </div>
+          <!-- Quote 2 -->
+          <div class="item">
+            <blockquote>
+              <div class="row">
+                <div class="col-sm-3 text-center">
+                  <img class="img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/mijustin/128.jpg" style="width: 100px;height:100px;">
+                </div>
+                <div class="col-sm-9">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam auctor nec lacus ut tempor. Mauris.</p>
+                  <small>Someone famous</small>
+                </div>
+              </div>
+            </blockquote>
+          </div>
+          <!-- Quote 3 -->
+          <div class="item">
+            <blockquote>
+              <div class="row">
+                <div class="col-sm-3 text-center">
+                  <img class="img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/keizgoesboom/128.jpg" style="width: 100px;height:100px;">
+                </div>
+                <div class="col-sm-9">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rutrum elit in arcu blandit, eget pretium nisl accumsan. Sed ultricies commodo tortor, eu pretium mauris.</p>
+                  <small>Someone famous</small>
+                </div>
+              </div>
+            </blockquote>
+          </div>
+        </div>
 </div>

@@ -1,0 +1,86 @@
+<div class="search-home">
+
+  <div class="container">
+
+    <div class="row search-box">
+      <div class="col-xs-12 col-sm-6">
+        <input [(ngModel)]="term" placeholder="Search" class="business_search_input_field form-control">
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <input [(ngModel)]="location" placeholder="Location" class="location_search_input_field form-control">
+      </div>
+      <div class="col-xs-12 col-sm-12">
+        <button (click)="SearchBusiness(term,location)"
+                class="btn btn-primary btn-block search_button">
+          <span class="glyphicon glyphicon-search">
+          </span>
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <div id="login-overlay" class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <div class="row">
+                        <div class="well">
+                            <form id="loginForm" method="POST" action="/login/" novalidate="novalidate">
+                                <div class="form-group">
+                                    <label for="username" class="control-label">Username</label>
+                                    <input type="text" class="form-control" id="username" name="username" value="" required="" title="Please enter you username" placeholder="example@gmail.com">
+                                    <span class="help-block"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="control-label">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password" value="" required="" title="Please enter your password">
+                                    <span class="help-block"></span>
+                                </div>
+                                <div id="loginErrorMsg" class="alert alert-error hide">Wrong username og password</div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="remember" id="remember"> Remember login
+                                    </label>
+                                    <p class="help-block"></p>
+                                </div>
+                                <button type="submit" class="btn btn-success btn-block">Login</button>
+                                <a href="/forgot/" class="btn btn-default btn-block">Help to login</a>
+                                <a href="/new-customer/" class="btn btn-info btn-block">Yes please, register now!</a>
+                            </form>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+  <div class="container how-to">
+    <h2 class="text-center text-primary">Simple steps to Order online</h2>
+    <br/>
+    <div class="row">
+      <div class="col-xs-12 col-sm-4 text-center">
+        <span class="glyphicon glyphicon-search home"></span>
+        <div class="home-desc">
+          Search  your Required Business online with location
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-4 text-center">
+        <span class="glyphicon glyphicon-shopping-cart home"></span>
+        <div class="home-desc">
+          Add your service Details. Anything! Anywhere!
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-4 text-center">
+        <span class="glyphicon glyphicon-map-marker home"></span>
+        <div class="home-desc">
+          Enter your delivery address. Click Complete Order.
+          All Set!
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
