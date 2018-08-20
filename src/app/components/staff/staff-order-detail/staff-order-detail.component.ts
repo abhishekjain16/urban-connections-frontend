@@ -31,7 +31,7 @@ export class StaffOrderDetailComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.sharedService.user;
-    if (this.user['type'] !== 'staff') {
+    if (this.user['type'] !== 'Staff') {
       this.router.navigate(['/']);
     }
     this.activatedRoute.params
@@ -41,7 +41,7 @@ export class StaffOrderDetailComponent implements OnInit {
         }
       );
 
-    this.orderService.findOrdersByStaff()
+    this.orderService.findOrderByStaff()
       .subscribe(
         (order: any) => {
           this.order = order;

@@ -24,7 +24,7 @@ export class StaffOrderListComponent implements OnInit {
       this.router.navigate(['/']);
     }
 
-    this.orderService.findOrdersByStaff()
+    this.orderService.findOrderByStaff()
       .subscribe(
         (orders: any) => {
           this.orders = orders;

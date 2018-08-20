@@ -26,7 +26,8 @@ export class OrderServiceClient {
     'rejectOrder' : this.rejectOrder,
     'findOrderByBusinessId': this.findOrderByBusinessId,
     'findOrdersForUser': this.findOrdersForUser,
-    'findOrderByBusinessIdForCustomer': this.findOrderByBusinessIdForCustomer
+    'findOrderByBusinessIdForCustomer': this.findOrderByBusinessIdForCustomer,
+    'findOrderByStaff': this.findOrderByStaff
   };
 
   createOrder(businessId: String, order: any) {
@@ -87,6 +88,19 @@ export class OrderServiceClient {
           return data;
         }
       );
+  }
+
+  findOrderByStaff() {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
+    this.options.headers = headers;
+
+    const url = this.baseUrl + '/api/staff/orders';
+    return this.http.get(url, this.options)
+      .map((response: Response) => {
+        return response.json();
+      });
   }
 
   findOrderByBusinessId(businessId: String) {

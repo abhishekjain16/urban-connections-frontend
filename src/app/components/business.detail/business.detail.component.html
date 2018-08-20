@@ -101,7 +101,7 @@
         </div>
         <ng-template #second>
           <ng-container *ngIf="user; else third">
-            <a [routerLink]="['/business', business.id, 'order', order['id']]"
+            <a [routerLink]="['/business', internalBusiness['id'], 'order', order['id']]"
                class="btn btn-success">
               Continue your Order
             </a>

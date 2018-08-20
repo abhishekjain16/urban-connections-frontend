@@ -111,7 +111,7 @@ export class OrderDetailComponent implements OnInit {
       quantity: 1,
       name: sItem.name,
       price: sItem.price,
-      orderId: this.orderId
+      order_id: this.orderId
     };
     this.orderItemService.createOrderItem(this.orderId, item)
       .subscribe( (orderItem) => {
