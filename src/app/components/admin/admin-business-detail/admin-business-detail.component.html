@@ -6,7 +6,7 @@
     <li role="presentation"><a [routerLink]="['/admin/order']">Orders</a></li>
   </ul>
 
-  <h3 class="text-center">Edit Business {{business.name}}</h3>
+  <h3 class="text-center">Edit Business {{business['name']}}</h3>
   <form (ngSubmit) = "update()" #f="ngForm">
     <div class="container-fluid profile clearfix">
       <label for="name" class="label">Name</label>

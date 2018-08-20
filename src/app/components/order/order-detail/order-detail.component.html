@@ -1,5 +1,5 @@
 <header><div class="container-fluid food-center">
-  <a [routerLink]="['/restaurant', restaurantId]" class="white pull-left"><span class="glyphicon glyphicon-chevron-left"></span></a>
+  <a [routerLink]="['/']" class="white pull-left"><span class="glyphicon glyphicon-chevron-left"></span></a>
   <span class="food-center">BYelp </span>
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 
@@ -130,7 +130,7 @@
           <span>${{total}}</span>
         </div>
       </div>
-      <div *ngIf="state=='cart'">
+      <div *ngIf="status=='cart'">
         <button [routerLink]="['/business', this.businessId, 'order', orderId, 'checkout']"
                 class="btn btn-lg btn-success btn-block">
           CHECKOUT

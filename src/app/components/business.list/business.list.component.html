@@ -4,7 +4,7 @@
     <a [routerLink]="['/']" class="white pull-left"><span class="glyphicon glyphicon-chevron-left"></span></a>
     <span class="food-center">BYelp</span>
 
-    <div class="login pull-right" *ngIf="this.user;else login">
+    <div class="login pull-right" *ngIf="this.user">
       <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Account
           <span class="caret"></span>
