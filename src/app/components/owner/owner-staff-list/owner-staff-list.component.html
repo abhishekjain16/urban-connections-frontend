@@ -4,7 +4,11 @@
     <li role="presentation" class="active"><a [routerLink]="['/owner/business/' + this.businessId + '/staff']">Staff</a></li>
     <li role="presentation"><a [routerLink]="['/owner/business/' + this.businessId + '/service']">Service</a></li>
     <li role="presentation"><a [routerLink]="['/owner/business/' + this.businessId + '/order']">Orders</a></li>
+      <li role="presentation"><a [routerLink]="['/profile']">Profile</a></li>
   </ul>
+  <a [routerLink]="['/owner', 'business', this.businessId, 'staff', 'new']">
+ <button type="submit" class="btn btn-primary form-control"> Click Here to Add new Staff</button>
+</a>
   <ul class="list-group">
     <li class="list-group-item active">
       <div class="row">

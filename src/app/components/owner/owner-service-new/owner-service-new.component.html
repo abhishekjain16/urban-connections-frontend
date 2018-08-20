@@ -5,7 +5,8 @@
     <li role="presentation"><a [routerLink]="['/owner/business/' + this.businessId + '/staff']">Staff</a></li>
     <li role="presentation"class="active"><a [routerLink]="['/owner/business/' + this.businessId + '/service']">Service</a></li>
     <li role="presentation"><a [routerLink]="['/owner/business/' + this.businessId + '/order']">Orders</a></li>
-  </ul>
+      <li role="presentation"><a [routerLink]="['/profile']">Profile</a></li>
+    </ul>
 
   <h3 class="text-center">Add a Service</h3>
   <form (ngSubmit) = "create()" #f="ngForm">
