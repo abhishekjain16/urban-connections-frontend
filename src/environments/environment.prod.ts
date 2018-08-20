@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  baseUrl : 'http://localhost:3000',
+  baseUrl : 'https://urban-connections.herokuapp.com',
   baseFrontUrl: 'http://localhost:4200'
 };
