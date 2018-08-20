@@ -1,8 +1,8 @@
 <header>
   <div class="container-fluid food-center">
-    <!--<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>-->
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
     <a [routerLink]="['/']" class="white pull-left"><span class="glyphicon glyphicon-chevron-left"></span></a>
-    <span class="food-center">FoOdSpOt </span>
+    <span class="food-center">BYelp</span>
 
     <div class="login pull-right" *ngIf="this.user;else login">
       <div class="dropdown">
@@ -34,7 +34,7 @@
     <div class="row search-row" *ngFor="let business of businesses">
       <div class="image-container col-xs-3 col-sm-offset-2 col-sm-2">
         <a [routerLink]="['/business',business.id]">
-          <img class="business_image thumbnail" width="180" src="{{business['image_url']}}" />
+          <img class="business_image image thumbnail" width="180" src="{{business['image_url']}}" />
         </a>
       </div>
       <div class="col-xs-5 col-sm-4">
@@ -42,13 +42,12 @@
           {{business['name']}}
         </a>
         <div>
-          <!--<rating [(ngModel)]="business['rating']"-->
-                  <!--readonly="true"-->
-                  <!--[float]="true">-->
-          <!--</rating>-->
+          <rating [(ngModel)]="business['rating']"
+                  readonly="true"
+                  [float]="true">
+          </rating>
           <span class="reviews">Number of Reviews: {{business.review_count}}</span>
           <div class="price">Price Range: {{business.price}}</div>
-          <!--<div class="categories">{{categories(restaurant.categories)}} </div>-->
         </div>
       </div>
       <div class="col-xs-4 col-sm-2">

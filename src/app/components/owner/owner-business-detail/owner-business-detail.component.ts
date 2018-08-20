@@ -56,7 +56,7 @@ export class OwnerBusinessDetailComponent implements OnInit {
     this.business['minimum_order_charge'] = this.profileForm.value.minimum_order_charge;
     this.business['service_charge'] = this.profileForm.value.service_charge;
     this.business['status'] = this.profileForm.value.status;
-    this.businessService.updateBusiness(this.business['id'], this.business)
+    this.businessService.updateBusiness(this.business['id'], this.business, 'owner')
       .subscribe(
         (business: any) => {
           this.business = business;

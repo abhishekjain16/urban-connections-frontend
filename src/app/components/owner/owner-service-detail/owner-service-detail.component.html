@@ -1,3 +1,46 @@
-<p>
-  owner-service-detail works!
-</p>
+
+<div class="container-fluid">
+  <ul class="nav nav-tabs nav-justified">
+    <li role="presentation"><a [routerLink]="['/owner/business/' + this.businessId]">Business</a></li>
+    <li role="presentation"><a [routerLink]="['/owner/business/' + this.businessId + '/staff']">Staff</a></li>
+    <li role="presentation" class="active"><a [routerLink]="['/owner/business/' + this.businessId + '/service']">Service</a></li>
+    <li role="presentation"><a [routerLink]="['/owner/business/' + this.businessId + '/order']">Orders</a></li>
+  </ul>
+
+  <h3 class="text-center">Add a Service</h3>
+  <form (ngSubmit) = "update()" #f="ngForm">
+    <div class="container-fluid profile clearfix">
+      <label for="name" class="label">Name</label>
+      <input type="text"
+             id="name"
+             name="name"
+             [(ngModel)]="name"
+             class="form-control" />
+
+      <label for="price" class="label">Price in $</label>
+      <input type="text"
+             id="price"
+             name="price"
+             [(ngModel)]="price"
+             class="form-control" />
+
+      <label for="duration" class="label">Time taken to complete the Service</label>
+      <input type="text"
+             id="duration"
+             name="duration"
+             [(ngModel)]="duration"
+             class="form-control" />
+
+      <label for="description" class="label">Description</label>
+      <input type="text"
+             id="description"
+             name="description"
+             [(ngModel)]="description"
+             class="form-control" />
+
+      <button type="submit"
+              class="btn btn-primary form-control"
+              [disabled]="!f.valid">Update Service</button>
+    </div>
+  </form>
+</div>

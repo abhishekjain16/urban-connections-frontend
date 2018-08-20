@@ -1,19 +1,24 @@
 <header>
   <div class="container-fluid food-center">
-    <!--<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>-->
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
     <a [routerLink]="['/']" class="white pull-left"><span class="glyphicon glyphicon-chevron-left"></span></a>
-    <span class="food-center">UC</span>
+    <span class="food-center">BYelp</span>
   </div>
 </header>
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-4">
       <h1>{{name}}</h1>
+      <div *ngIf="(internalBusiness['id'] == null)">
+        <a [routerLink]="['/business', business['id'], 'register']" class="pull-right">
+          Claim this Business
+        </a>
+      </div>
       <div>
-        <!--<rating [(ngModel)]="business['rating']"-->
-                <!--readonly="true"-->
-                <!--[float]="true">-->
-        <!--</rating>-->
+        <rating [(ngModel)]="business['rating']"
+                readonly="true"
+                [float]="true">
+        </rating>
         <span class="reviews">Reviews: {{business['review_count']}}</span>
         <div class="price">{{business['price']}}</div>
         <div class="categories">
@@ -22,12 +27,12 @@
         </div>
       </div>
 
-      <!--<ngui-map-->
-        <!--zoom="11"-->
-        <!--[center]="city">-->
-        <!--<marker *ngFor="let pos of positions"-->
-                <!--[position]="pos"></marker>-->
-      <!--</ngui-map>-->
+      <ngui-map
+        zoom="11"
+        [center]="city">
+        <marker *ngFor="let pos of positions"
+                [position]="pos"></marker>
+      </ngui-map>
 
     </div>
 
@@ -64,7 +69,7 @@
           <li *ngFor="let review of reviews" class="list-group-item">
             <div class="row">
               <div class="col-xs-6 col-sm-2">
-                <img class="thumbnail" src="{{review['user']['image_url']}}" />
+                <img class="image thumbnail" src="{{review['user']['image_url']}}" />
               </div>
               <div class="name col-xs-6 col-sm-10">
                 {{review['user']['name']}}
@@ -88,14 +93,37 @@
       </div>
     </div>
     <div class="col-xs-12 col-sm-4 time-slot">
-      <div class="timings" *ngIf="hours.length > 0">
+      <div *ngIf="shouldShow">
+        <div *ngIf="user && (order | json) == '{}';else second">
+          <a (click)="createOrder()"
+             class="btn btn-success">Place an Order
+          </a>
+        </div>
+        <ng-template #second>
+          <ng-container *ngIf="user; else third">
+            <a [routerLink]="['/business', business.id, 'order', order['id']]"
+               class="btn btn-success">
+              Continue your Order
+            </a>
+          </ng-container>
+        </ng-template>
+        <ng-template #third>
+          <a [routerLink]="['/login']"
+             class="btn btn-primary btn-lg">
+            Login/Sign up to Order online
+          </a>
+        </ng-template>
+      </div>
+      <div class="timings">
         <h3>Hours of Operation</h3>
         <div class="text-info">
           Contact Information: {{business['display_phone']}}
         </div>
-        <ul class="list-group">
+        <ul class="list-group" *ngIf="hours.length > 0">
           <li *ngFor="let day of days; let i = index" [attr.data-index]="i" class="list-group-item">
-            {{day}} : {{ hours[i]['start']}} - {{hours[i]['end']}}
+            <div *ngIf="hours[i]">
+              {{day}} : {{ hours[i]['start']}} - {{hours[i]['end']}}
+            </div>
           </li>
         </ul>
       </div>

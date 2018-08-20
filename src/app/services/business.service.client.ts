@@ -24,7 +24,10 @@ export class BusinessServiceClient {
     'findBusinessById' : this.findBusinessById,
     'updateBusiness' : this.updateBusiness,
     'deleteBusiness' : this.deleteBusiness,
-    'findBusinesses': this.findBusinesses
+    'findBusinesses': this.findBusinesses,
+    'findBusinessByYelpId': this.findBusinessByYelpId,
+    'findReviewsByBusinessId': this.findReviewsByBusinessId,
+    'findInternalBusinessById': this.findInternalBusinessById
   };
 
   createBusiness(business: any) {
@@ -33,7 +36,7 @@ export class BusinessServiceClient {
     headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
     this.options.headers = headers;
 
-    return this.http.post(this.baseUrl + '/api/admin/business/', {business: business}, this.options)
+    return this.http.post(this.baseUrl + '/api/business/', {business: business}, this.options)
       .map(
         (res: Response) => {
           const data = res.json();
@@ -54,12 +57,32 @@ export class BusinessServiceClient {
       });
   }
 
-  updateBusiness(id: String, business: any) {
+  findInternalBusinessById(id: String) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
     this.options.headers = headers;
-    return this.http.put(this.baseUrl + '/api/admin/business/' + id, business, this.options)
+    const url = environment.baseUrl + '/api/business/' + id + '/internal';
+    return this.http.get(url, this.options)
+      .map((response: Response) => {
+        return response.json();
+      });
+  }
+
+  findBusinessByYelpId(yelpId: string) {
+    const url = environment.baseUrl + '/api/business/' + yelpId + '/yelp';
+    return this.http.get(url, this.options)
+      .map((response: Response) => {
+        return response.json();
+      });
+  }
+
+  updateBusiness(id: String, business: any, namespace: String) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
+    this.options.headers = headers;
+    return this.http.put(this.baseUrl + '/api/' + namespace + '/business/' + id, business, this.options)
       .map(
         (res: Response) => {
           const data = res.json();
@@ -107,12 +130,21 @@ export class BusinessServiceClient {
       });
   }
 
+  //Yelp related
   searchBusiness(term: String, location: String) {
     const url = environment.baseUrl + '/api/business?term=' + term + '&location=' + location;
     return this.http.get(url)
       .map((response: Response) => {
         return response.json();
       });
+  }
+
+  findReviewsByBusinessId(businessId: String) {
+    const url = environment.baseUrl + '/api/business/' + businessId + '/reviews';
+    return this.http.get(url)
+    .map((response: Response) => {
+      return response.json();
+    });
   }
 
   SearchBusinessById(id: String) {

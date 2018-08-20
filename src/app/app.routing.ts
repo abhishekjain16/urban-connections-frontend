@@ -21,6 +21,10 @@ import {OwnerServiceNewComponent} from './components/owner/owner-service-new/own
 import {OwnerServiceDetailComponent} from './components/owner/owner-service-detail/owner-service-detail.component';
 import {StaffOrderDetailComponent} from './components/staff/staff-order-detail/staff-order-detail.component';
 import {StaffOrderListComponent} from './components/staff/staff-order-list/staff-order-list.component';
+import {OwnerOrderListComponent} from './components/owner/owner-order-list/owner-order-list.component';
+import {OwnerOrderDetailComponent} from './components/owner/owner-order-detail/owner-order-detail.component';
+import {OwnerRegistrationComponent} from './components/user/owner-registration/owner-registration.component';
+import {OrderDetailComponent} from './components/order/order-detail/order-detail.component';
 
 const APP_ROUTES: Routes = [
   {path: '', component : BusinessSearchComponent},
@@ -29,6 +33,8 @@ const APP_ROUTES: Routes = [
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
+  {path: 'business/:businessId/register', component: OwnerRegistrationComponent},
+  {path: 'business/:businessId/order/:id', component: OrderDetailComponent, canActivate: [AuthGuard]},
   {path: 'admin/user', component: AdminUserListComponent, canActivate: [AuthGuard]},
   {path: 'admin/user/:id', component: AdminUserDetailComponent, canActivate: [AuthGuard]},
   {path: 'admin/business', component: AdminBusinessListComponent, canActivate: [AuthGuard]},
@@ -36,13 +42,15 @@ const APP_ROUTES: Routes = [
   {path: 'owner/business', component: OwnerBusinessListComponent, canActivate: [AuthGuard]},
   {path: 'owner/business/:id', component: OwnerBusinessDetailComponent, canActivate: [AuthGuard]},
   {path: 'owner/business/:businessId/staff', component: OwnerStaffListComponent, canActivate: [AuthGuard]},
-  {path: 'owner/business/:businessId/staff/:id', component: OwnerStaffDetailComponent, canActivate: [AuthGuard]},
   {path: 'owner/business/:businessId/staff/new', component: OwnerStaffNewComponent, canActivate: [AuthGuard]},
+  {path: 'owner/business/:businessId/staff/:id', component: OwnerStaffDetailComponent, canActivate: [AuthGuard]},
   {path: 'owner/business/:businessId/service', component: OwnerServiceListComponent, canActivate: [AuthGuard]},
   {path: 'owner/business/:businessId/service/new', component: OwnerServiceNewComponent, canActivate: [AuthGuard]},
   {path: 'owner/business/:businessId/service/:id', component: OwnerServiceDetailComponent, canActivate: [AuthGuard]},
-  {path: 'staff/order', component:StaffOrderListComponent, canActivate:[AuthGuard]},
-  {path: 'staff/order/:orderId/staff/:id', component:StaffOrderDetailComponent, canActivate:[AuthGuard]},
+  {path: 'staff/order', component: StaffOrderListComponent, canActivate:[AuthGuard]},
+  {path: 'staff/order/:orderId', component: StaffOrderDetailComponent, canActivate:[AuthGuard]},
+  {path: 'owner/business/:businessId/order', component: OwnerOrderListComponent, canActivate: [AuthGuard]},
+  {path: 'owner/business/:businessId/order/:id', component: OwnerOrderDetailComponent, canActivate: [AuthGuard]},
 ];
 
 // Export the routes as module providers

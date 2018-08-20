@@ -32,6 +32,17 @@ import { OwnerServiceDetailComponent } from './components/owner/owner-service-de
 import { OwnerServiceNewComponent } from './components/owner/owner-service-new/owner-service-new.component';
 import { StaffOrderListComponent } from './components/staff/staff-order-list/staff-order-list.component';
 import { StaffOrderDetailComponent } from './components/staff/staff-order-detail/staff-order-detail.component';
+import {ServiceClient} from './services/service.client';
+import { OwnerOrderListComponent } from './components/owner/owner-order-list/owner-order-list.component';
+import { OwnerOrderDetailComponent } from './components/owner/owner-order-detail/owner-order-detail.component';
+import {OrderServiceClient} from './services/order.service.client';
+import { NguiMapModule} from '@ngui/map';
+import { OwnerRegistrationComponent } from './components/user/owner-registration/owner-registration.component';
+import { OrderCheckoutComponent } from './components/order/order-checkout/order-checkout.component';
+import { OrderListComponent } from './components/order/order-list/order-list.component';
+import { OrderCompleteComponent } from './components/order/order-complete/order-complete.component';
+import { OrderDetailComponent } from './components/order/order-detail/order-detail.component';
+import {OrderItemServiceClient} from './services/orderItem.service.client';
 
 @NgModule({
   declarations: [
@@ -55,7 +66,14 @@ import { StaffOrderDetailComponent } from './components/staff/staff-order-detail
     OwnerServiceDetailComponent,
     OwnerServiceNewComponent,
     StaffOrderListComponent,
-    StaffOrderDetailComponent
+    StaffOrderDetailComponent,
+    OwnerOrderListComponent,
+    OwnerOrderDetailComponent,
+    OwnerRegistrationComponent,
+    OrderCheckoutComponent,
+    OrderListComponent,
+    OrderCompleteComponent,
+    OrderDetailComponent
   ],
   imports: [
     HttpModule,
@@ -65,9 +83,11 @@ import { StaffOrderDetailComponent } from './components/staff/staff-order-detail
     RatingModule,
     Ng2CarouselamosModule,
     LoadingModule,
-    StorageServiceModule
+    StorageServiceModule,
+    NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBx7TyjfNDQveTpb4yxjcrqGV0eU39iSkc'}),
+    LoadingModule,
   ],
-  providers: [BusinessServiceClient, UserServiceClient, SharedService, AuthGuard],
+  providers: [BusinessServiceClient, UserServiceClient, SharedService, AuthGuard, ServiceClient, OrderServiceClient, OrderItemServiceClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

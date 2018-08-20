@@ -1,3 +1,66 @@
-<p>
-  owner-staff-new works!
-</p>
+
+<div class="container-fluid">
+  <ul class="nav nav-tabs nav-justified">
+    <li role="presentation"><a [routerLink]="['/owner/business/' + this.businessId]">Business</a></li>
+    <li role="presentation" class="active"><a [routerLink]="['/owner/business/' + this.businessId + '/staff']">Staff</a></li>
+    <li role="presentation"><a [routerLink]="['/owner/business/' + this.businessId + '/service']">Service</a></li>
+    <li role="presentation"><a [routerLink]="['/owner/business/' + this.businessId + '/order']">Orders</a></li>
+  </ul>
+
+  <h3 class="text-center">Add Staff</h3>
+  <form (ngSubmit) = "create()" #f="ngForm">
+    <div class="container-fluid profile clearfix">
+      <label for="username" class="label">Username</label>
+      <input type="text"
+             id="username"
+             name="username"
+             [(ngModel)]="username"
+             class="form-control" />
+
+      <label for="email" class="label">Email</label>
+      <input type="email"
+             id="email"
+             name="email"
+             [(ngModel)]="email"
+             class="form-control" />
+
+      <label for="password" class="label">Password</label>
+      <input type="password"
+             name="password"
+             id="password"
+             [(ngModel)]="password"
+             class="form-control" />
+
+      <label for="first_name" class="label">First Name</label>
+      <input type="text"
+             id="first_name"
+             name="first_name"
+             [(ngModel)]="first_name"
+             class="form-control" />
+
+      <label for="last_name" class="label">Last Name</label>
+      <input type="text"
+             id="last_name"
+             name="last_name"
+             [(ngModel)]="last_name"
+             class="form-control" />
+
+      <label for="phone" class="label">Phone</label>
+      <input type="text"
+             id="phone"
+             name="phone"
+             [(ngModel)]="phone"
+             class="form-control" />
+      <div *ngIf="!this.businessId">
+        <label for="active" class="label">Active?</label>
+        <input type="checkbox"
+               id="active"
+               name="active"
+               [(ngModel)]="active">
+      </div>
+      <button type="submit"
+              class="btn btn-primary form-control"
+              [disabled]="!f.valid">Add Staff</button>
+    </div>
+  </form>
+</div>

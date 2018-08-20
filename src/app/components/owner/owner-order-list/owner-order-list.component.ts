@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {SharedService} from '../../../services/shared.service';
-import {ServiceClient} from '../../../services/service.client';
+import {OrderServiceClient} from '../../../services/order.service.client';
 
 @Component({
-  selector: 'app-owner-service-list',
-  templateUrl: './owner-service-list.component.html',
-  styleUrls: ['./owner-service-list.component.css']
+  selector: 'app-owner-order-list',
+  templateUrl: './owner-order-list.component.html',
+  styleUrls: ['./owner-order-list.component.css']
 })
-export class OwnerServiceListComponent implements OnInit {
-  services = [];
+export class OwnerOrderListComponent implements OnInit {
+  orders = [];
   user = {};
   businessId: String;
 
   constructor(private activatedRoute: ActivatedRoute,
               private sharedService: SharedService,
               private router: Router,
-              private serviceClient: ServiceClient) { }
+              private orderService: OrderServiceClient) { }
 
   ngOnInit() {
     this.user = this.sharedService.user;
@@ -29,11 +29,12 @@ export class OwnerServiceListComponent implements OnInit {
           this.businessId = params['businessId'];
         }
       );
-    this.serviceClient.findServices(this.businessId, 'owner')
+    this.orderService.findOrderByBusinessId(this.businessId)
       .subscribe(
-        (services: any) => {
-          this.services = services;
+        (orders: any) => {
+          this.orders = orders;
         }
       );
   }
+
 }

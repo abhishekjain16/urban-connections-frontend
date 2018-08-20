@@ -9,7 +9,7 @@ import { SESSION_STORAGE, WebStorageService } from 'angular-webstorage-service';
 
 @Injectable()
 
-export class OrderServiceClient {
+export class ServiceClient {
 
   constructor(private http: Http,
               private sharedService: SharedService,
@@ -20,24 +20,22 @@ export class OrderServiceClient {
   options = new RequestOptions();
 
   api = {
-    'createOrder'   : this.createOrder,
-    'findOrderByBusinessIdAndOrderId' : this.findOrderByBusinessIdAndOrderId,
-    'updateOrder' : this.updateOrder,
-    'rejectOrder' : this.rejectOrder,
-    'findOrderByBusinessId': this.findOrderByBusinessId,
-    'findOrdersForUser': this.findOrdersForUser,
-    'findOrderByBusinessIdForCustomer': this.findOrderByBusinessIdForCustomer
+    'createService'   : this.createService,
+    'findServiceById' : this.findServiceById,
+    'updateService' : this.updateService,
+    'deleteService' : this.deleteService,
+    'findServices': this.findServices
   };
 
-  createOrder(businessId: String, order: any) {
+  createService(businessId: String, service: any, namespace: String) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
     this.options.headers = headers;
 
-    const url = this.baseUrl + '/api/business/' + businessId + '/orders';
+    const url = this.baseUrl + '/api/' + namespace + '/business/' + businessId + '/services';
 
-    return this.http.post(url, {order: order}, this.options)
+    return this.http.post(url, {service: service}, this.options)
       .map(
         (res: Response) => {
           const data = res.json();
@@ -46,25 +44,25 @@ export class OrderServiceClient {
       );
   }
 
-  findOrderByBusinessIdAndOrderId(id: String, businessId: String) {
+  findServiceById(id: String, businessId: String, namespace: String) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
     this.options.headers = headers;
-    const url = this.baseUrl + '/api/business/' + businessId + '/orders/' + id;
+    const url = this.baseUrl + '/api/' + namespace + '/business/' + businessId + '/services/' + id;
     return this.http.get(url, this.options)
       .map((response: Response) => {
         return response.json();
       });
   }
 
-  updateOrder(id: String, businessId: String, order: any) {
+  updateService(id: String, businessId: String, service: any, namespace: String) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
     this.options.headers = headers;
-    const url = this.baseUrl + '/api/business/' + businessId + '/orders/' + id;
-    return this.http.put(url, order, this.options)
+    const url = this.baseUrl + '/api/' + namespace + '/business/' + businessId + '/services/' + id;
+    return this.http.put(url, service, this.options)
       .map(
         (res: Response) => {
           const data = res.json();
@@ -73,13 +71,13 @@ export class OrderServiceClient {
       );
   }
 
-  rejectOrder(id: String, businessId: String) {
+  deleteService(id: String, businessId: String, namespace: String) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
     this.options.headers = headers;
 
-    const url = this.baseUrl + '/api/business/' + businessId + '/order/' + id;
+    const url = this.baseUrl + '/api/' + namespace + '/business/' + businessId + '/services/' + id;
     return this.http.delete(url, this.options)
       .map(
         (res: Response) => {
@@ -89,45 +87,16 @@ export class OrderServiceClient {
       );
   }
 
-  findOrderByBusinessId(businessId: String) {
+  findServices(businessId: String, namespace: String) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
     this.options.headers = headers;
 
-    const url = this.baseUrl + '/api/business/' + businessId + '/orders/';
+    const url = this.baseUrl + '/api/' + namespace + '/business/' + businessId + '/services/';
     return this.http.get(url, this.options)
       .map((response: Response) => {
         return response.json();
       });
-  }
-
-  findOrdersForUser() {
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
-    this.options.headers = headers;
-
-    const url = this.baseUrl + '/api/orders/';
-    return this.http.get(url, this.options)
-      .map((response: Response) => {
-        return response.json();
-      });
-  }
-
-  findOrderByBusinessIdForCustomer(businessId: string, state: string) {
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
-    this.options.headers = headers;
-    let url = this.baseUrl + '/api/business/' + businessId + '/orders/last?';
-    if (state) {
-      url = url + 'state=' + state;
-    }
-    return this.http.get(url, this.options)
-      .map((response: Response) => {
-        return response.json();
-      });
-
   }
 }

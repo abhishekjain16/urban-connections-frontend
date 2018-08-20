@@ -2,39 +2,39 @@
   <ul class="nav nav-tabs nav-justified">
     <li role="presentation"><a [routerLink]="['/owner/business/' + this.businessId]">Business</a></li>
     <li role="presentation"><a [routerLink]="['/owner/business/' + this.businessId + '/staff']">Staff</a></li>
-    <li role="presentation"class="active"><a [routerLink]="['/owner/business/' + this.businessId + '/service']">Service</a></li>
-    <li role="presentation"><a [routerLink]="['/owner/business/' + this.businessId + '/order']">Orders</a></li>
+    <li role="presentation"><a [routerLink]="['/owner/business/' + this.businessId + '/service']">Service</a></li>
+    <li role="presentation"class="active"><a [routerLink]="['/owner/business/' + this.businessId + '/order']">Orders</a></li>
   </ul>
   <ul class="list-group">
     <li class="list-group-item active">
       <div class="row">
         <div class="col-xs-9 col-sm-6 col-md-3">
-          Name
+          Order Number
         </div>
         <div class="col-md-3 hidden-sm hidden-xs">
-          Price
+          Total
         </div>
         <div class="col-sm-3 col-md-3 hidden-xs">
-          Duration
+          Customer
         </div>
         <div class="col-xs-3">
         </div>
       </div>
     </li>
 
-    <li class="list-group-item" *ngFor="let service of services">
+    <li class="list-group-item" *ngFor="let order of orders">
       <div class="row">
         <div class="col-xs-9 col-sm-6 col-md-3">
-          {{service['name']}}
+          {{order['order_number']}}
         </div>
         <div class="col-md-3 hidden-sm hidden-xs">
-          ${{service.price}}
+          ${{order['total']}}
         </div>
         <div class="col-sm-3 col-md-3 hidden-xs">
-          {{service['duration']}}
+          {{order['customer']['username']}}
         </div>
         <div class="col-xs-3">
-          <a class="pull-right" [routerLink]="['/owner', 'business', this.businessId, 'service', service['id']]">
+          <a class="pull-right" [routerLink]="['/owner', 'business', this.businessId, 'order', order['id']]">
             <span class="glyphicon glyphicon-edit"></span>
           </a>
         </div>

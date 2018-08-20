@@ -26,6 +26,8 @@ export class UserServiceClient {
     'updateUser' : this.updateUser,
     'deleteUser' : this.deleteUser,
     'findUsersByRole': this.findUsersByRole,
+    'createStaff': this.createStaff,
+    'findOwnerByBusinessId': this.findOwnerByBusinessId,
     'currentUser': this.currentUser
   };
 
@@ -35,6 +37,21 @@ export class UserServiceClient {
         (res: Response) => {
           const data = res.json();
           this.storage.set('access_token', data['access_token']);
+          return data;
+        }
+      );
+  }
+
+  createStaff(businessId: String, staff: any) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
+    this.options.headers = headers;
+
+    return this.http.post(this.baseUrl + '/api/owner/business/' + businessId + '/staffs', {staff: staff}, this.options)
+      .map(
+        (res: Response) => {
+          const data = res.json();
           return data;
         }
       );
@@ -56,13 +73,49 @@ export class UserServiceClient {
   }
 
   findStaffsByBusinessId(businessId: string) {
-    return this.http.get(this.baseUrl + '/api/business/' + businessId + '/staffs')
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
+    this.options.headers = headers;
+
+    return this.http.get(this.baseUrl + '/api/owner/business/' + businessId + '/staffs', this.options)
       .map(
         (res: Response) => {
           const data = res.json();
           return data;
         }
       );
+  }
+
+  findStaffByBusinessId(businessId: string, staffId: string) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
+    this.options.headers = headers;
+
+    return this.http.get(this.baseUrl + '/api/owner/business/' + businessId + '/staffs/' + staffId, this.options)
+      .map(
+        (res: Response) => {
+          const data = res.json();
+          return data;
+        }
+      );
+  }
+
+  findOwnerByBusinessId(businessId: string) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
+    this.options.headers = headers;
+
+    return this.http.get(this.baseUrl + '/api/business/' + businessId + '/owner/', this.options)
+      .map(
+        (res: Response) => {
+          const data = res.json();
+          return data;
+        }
+      );
+
   }
 
 
@@ -72,6 +125,20 @@ export class UserServiceClient {
     headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
     this.options.headers = headers;
     return this.http.put(this.baseUrl + '/api/users/' + id, user, this.options)
+      .map(
+        (res: Response) => {
+          const data = res.json();
+          return data;
+        }
+      );
+  }
+
+  updateStaff(businessId: String, staffId: String, staff: any) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
+    this.options.headers = headers;
+    return this.http.put(this.baseUrl + '/api/owner/business/' + businessId + '/staffs/' + staffId, staff, this.options)
       .map(
         (res: Response) => {
           const data = res.json();
@@ -158,16 +225,22 @@ export class UserServiceClient {
 
   currentUser() {
     this.options.withCredentials = true;
-    return this.http.post(this.baseUrl + '/api/loggedin', '', this.options)
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
+    this.options.headers = headers;
+
+    return this.http.post(this.baseUrl + '/api/users/logged_in', '', this.options)
       .map(
         (res: Response) => {
           const user = res.json();
-          if (user !== 0) {
-            return user;
-          } else {
+          if (user['error']) {
             return false;
+          } else {
+            return user;
           }
         }
       );
   }
+
 }

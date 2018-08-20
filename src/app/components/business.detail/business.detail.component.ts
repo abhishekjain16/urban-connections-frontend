@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {BusinessServiceClient} from '../../services/business.service.client';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserServiceClient} from '../../services/user.service.client';
+import {SharedService} from '../../services/shared.service';
+import {OrderServiceClient} from '../../services/order.service.client';
+import {NULL_EXPR} from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-business.detail',
@@ -16,6 +19,8 @@ export class BusinessDetailComponent implements OnInit {
   number: string;
   images = [];
   business = {};
+  internalBusiness = {};
+  owner = {};
   hours = [];
   days = [];
   reviews = [];
@@ -27,21 +32,15 @@ export class BusinessDetailComponent implements OnInit {
   city: string;
   shouldShow: boolean;
   loading = false;
+  tax = 5.0;
 
   constructor( private businessService: BusinessServiceClient,
                private activatedRoute: ActivatedRoute,
                private router: Router,
-               private userService: UserServiceClient) { }
+               private userService: UserServiceClient,
+               private sharedService: SharedService,
+               private orderService: OrderServiceClient) { }
 
-  SearchBusinessById(id: String) {
-    this.businessService.SearchBusinessById(id)
-      .subscribe( (result) => {
-        this.name = result.name;
-        this.image = result.image_url;
-        this.ratings = result.rating;
-        this.business = result;
-      });
-  }
   ngOnInit() {
     this.loading = true;
     this.activatedRoute.params
@@ -50,9 +49,29 @@ export class BusinessDetailComponent implements OnInit {
           this.businessId = params['businessId'];
         });
 
+    this.userService.currentUser()
+      .subscribe( (user) => {
+        this.user = user;
+        this.businessService.findBusinessByYelpId(this.businessId)
+          .subscribe(
+            (internalBusiness: any) => {
+              this.internalBusiness = internalBusiness;
+              if (this.internalBusiness) {
+                this.orderService.findOrderByBusinessIdForCustomer(this.internalBusiness['id'], 'cart')
+                  .subscribe(
+                    (order: any) => {
+                      if (order) {
+                        this.order = order;
+                      }
+                      this.canOrder();
+                    }
+                  );
+              }
+            });
+      });
+
     this.businessService.SearchBusinessById(this.businessId)
       .subscribe( (result) => {
-        console.log(result);
         const coordinates = result['coordinates'];
         this.name = result.name;
         this.image = result.image_url;
@@ -69,7 +88,13 @@ export class BusinessDetailComponent implements OnInit {
         this.city = result.location['city'];
         this.loading = false;
       });
+
+    this.businessService.findReviewsByBusinessId(this.businessId)
+      .subscribe( (result) => {
+        this.reviews = result.reviews;
+      });
   }
+
   categories(cats) {
     if (cats) {
       return cats.map(a => a.title).join(', ');
@@ -77,4 +102,29 @@ export class BusinessDetailComponent implements OnInit {
       return '';
     }
   }
+
+  createOrder() {
+    this.order = {
+      customer_id: this.user['id'],
+      visitCharges: this.internalBusiness['service_charge'],
+      total: this.internalBusiness['service_charge'] + this.tax,
+      tax: this.tax,
+      status: 'cart'
+
+    };
+    this.orderService.createOrder(this.internalBusiness['id'], this.order)
+      .subscribe(
+        (order: any) => {
+          this.router.navigate(['business', this.internalBusiness['id'], 'order', order['id']]);
+        });
+  }
+
+  canOrder() {
+    if (this.internalBusiness) {
+      this.shouldShow = true;
+    } else {
+      this.shouldShow = false;
+    }
+  }
+
 }

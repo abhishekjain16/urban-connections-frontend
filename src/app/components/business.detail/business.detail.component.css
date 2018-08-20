@@ -1,0 +1,36 @@
+.center-cropped {
+  object-fit: contain;
+  border-radius: 5px;
+}
+
+.items {
+  height: 400px;
+  width: 1000px;
+}
+
+.ng2-carouselamos-wrapper {
+  width: 100% !important;
+}
+
+.white {
+  color: #ffffff;
+}
+
+.timings {
+  padding: 1rem;
+  background-color: #efefef;
+}
+
+.name {
+  font-weight: 700;
+  font-size: large;
+}
+
+.review-text {
+  font-style: italic;
+}
+
+.time-slot a{
+  margin-bottom: 5px;
+  width: 100%;
+}
