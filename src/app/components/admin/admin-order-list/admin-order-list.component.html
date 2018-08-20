@@ -1,10 +1,8 @@
 <div class="container-fluid">
   <ul class="nav nav-tabs nav-justified">
-    <li role="presentation"><a [routerLink]="['/owner/business/' + this.businessId]">Business</a></li>
-    <li role="presentation"><a [routerLink]="['/owner/business/' + this.businessId + '/staff']">Staff</a></li>
-    <li role="presentation"><a [routerLink]="['/owner/business/' + this.businessId + '/service']">Service</a></li>
+    <li role="presentation"><a [routerLink]="['/admin/business/', businessId]">Business</a></li>
     <li role="presentation"class="active"><a [routerLink]="['/owner/business/' + this.businessId + '/order']">Orders</a></li>
-      <li role="presentation"><a [routerLink]="['/profile']">Profile</a></li>
+    <li role="presentation"><a [routerLink]="['/profile']">Profile</a></li>
   </ul>
   <ul class="list-group">
     <li class="list-group-item active">
@@ -29,7 +27,7 @@
     <li class="list-group-item" *ngFor="let order of orders">
       <div class="row">
         <div class="col-xs-9 col-sm-6 col-md-3">
-          <a [routerLink]="['/owner', 'business', this.businessId, 'order', order['id']]">
+          <a [routerLink]="['/admin', 'business', this.businessId, 'order', order['id']]">
             {{order['order_number']}}
           </a>
         </div>
@@ -43,13 +41,11 @@
           {{order['status']}}
         </div>
         <div class="col-xs-3">
-          <a class="pull-right" [routerLink]="['/owner', 'business', this.businessId, 'order', order['id']]">
+          <a class="pull-right" [routerLink]="['/admin', 'business', this.businessId, 'order', order['id']]">
             <span class="glyphicon glyphicon-edit"></span>
           </a>
         </div>
       </div>
     </li>
   </ul>
-
 </div>
-

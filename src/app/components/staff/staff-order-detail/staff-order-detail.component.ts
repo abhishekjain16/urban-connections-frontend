@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {SharedService} from '../../../services/shared.service';
-import {BusinessServiceClient} from '../../../services/business.service.client';
 import {NgForm} from '@angular/forms';
 import {OrderServiceClient} from '../../../services/order.service.client';
-
+import {OrderItemServiceClient} from '../../../services/orderItem.service.client';
 
 
 @Component({
@@ -18,16 +17,16 @@ export class StaffOrderDetailComponent implements OnInit {
   owner = {};
   businessId: String;
   name: String;
-  website: String;
-  minimum_order_charge: Number;
-  service_charge: Number;
   status: boolean;
+  orderId: string;
+  items = [];
 
 
   constructor(private activatedRoute: ActivatedRoute,
               private sharedService: SharedService,
               private router: Router,
-              private orderService: OrderServiceClient) { }
+              private orderService: OrderServiceClient,
+              private orderItemService: OrderItemServiceClient) { }
 
   ngOnInit() {
     this.user = this.sharedService.user;
@@ -37,22 +36,43 @@ export class StaffOrderDetailComponent implements OnInit {
     this.activatedRoute.params
       .subscribe(
         (params: any) => {
-          this.businessId = params['id'];
-        }
-      );
+          this.orderId = params['orderId'];
+          this.orderService.findOrderByStaffAndId(this.orderId)
+            .subscribe(
+              (order: any) => {
+                this.order = order;
+                this.status = this.order['status'];
+              }
+            );
 
-    this.orderService.findOrderByStaff()
+        });
+    this.loadOrderItems();
+  }
+  loadOrderItems() {
+    this.orderItemService.findOrderItemsByOrder(this.orderId)
+      .subscribe( (items) => {
+        this.items = items;
+      });
+  }
+
+  cancelOrder() {
+    this.order['status'] = 'rejected';
+    this.orderService.updateOrderByStaff(this.orderId, this.order)
       .subscribe(
         (order: any) => {
-          this.order = order;
-          this.name = this.order['name'];
-          this.website = this.order['website'];
-          this.minimum_order_charge = this.order['minimum_order_charge'];
-          this.service_charge = this.order['service_charge'];
-          this.status = this.order['status'];
+          this.router.navigate(['/staff', 'order']);
         }
       );
+  }
 
+  completeOrder() {
+    this.order['status'] = 'completed';
+    this.orderService.updateOrderByStaff(this.orderId, this.order)
+      .subscribe(
+        (order: any) => {
+          this.router.navigate(['/staff', 'order']);
+        }
+      );
   }
 
 }

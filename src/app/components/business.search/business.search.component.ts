@@ -19,6 +19,10 @@ export class BusinessSearchComponent implements OnInit {
                private userService: UserServiceClient) { }
 
   ngOnInit() {
+    this.userService.currentUser()
+      .subscribe( (user) => {
+        this.user = user;
+      });
   }
 
   SearchBusiness(term: String, location: String) {

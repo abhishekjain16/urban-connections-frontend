@@ -44,6 +44,8 @@ import { OrderCompleteComponent } from './components/order/order-complete/order-
 import { OrderDetailComponent } from './components/order/order-detail/order-detail.component';
 import {OrderItemServiceClient} from './services/orderItem.service.client';
 import { AdminUserRegisterComponent } from './components/admin/admin-user-register/admin-user-register.component';
+import { AdminOrderListComponent } from './components/admin/admin-order-list/admin-order-list.component';
+import { AdminOrderDetailComponent } from './components/admin/admin-order-detail/admin-order-detail.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +77,9 @@ import { AdminUserRegisterComponent } from './components/admin/admin-user-regist
     OrderListComponent,
     OrderCompleteComponent,
     OrderDetailComponent,
-    AdminUserRegisterComponent
+    AdminUserRegisterComponent,
+    AdminOrderListComponent,
+    AdminOrderDetailComponent
   ],
   imports: [
     HttpModule,

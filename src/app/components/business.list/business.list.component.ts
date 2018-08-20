@@ -34,6 +34,11 @@ export class BusinessListComponent implements OnInit {
           this.location = params['location'];
         }
       );
+    this.userService.currentUser()
+      .subscribe( (user) => {
+        this.user = user;
+      });
+
     this.businessService.searchBusiness(this.term, this.location )
       .subscribe( (result) => {
         this.result = result;

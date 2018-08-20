@@ -1,0 +1,27 @@
+.cart {
+  background-color: #efefef;
+  padding: 2rem;
+}
+
+.summary span {
+  float: right;
+  margin-right: 1rem;
+}
+
+.menu-item {
+  font-size: large;
+  color: #260585;
+}
+
+.description {
+  font-size: small;
+  padding-top: 5px;
+  color: #444;
+  line-height: 3;
+}
+
+.minimum {
+  color: #853800;
+  text-align: center;
+  padding: 1rem;
+}

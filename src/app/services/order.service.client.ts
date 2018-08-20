@@ -28,7 +28,8 @@ export class OrderServiceClient {
     'findOrdersForUser': this.findOrdersForUser,
     'findOrderByBusinessIdForCustomer': this.findOrderByBusinessIdForCustomer,
     'findOrderByStaff': this.findOrderByStaff,
-    'findAllCustomerOrders': this.findAllCustomerOrders
+    'findAllCustomerOrders': this.findAllCustomerOrders,
+    'findOrderByStaffAndId': this.findOrderByStaffAndId
   };
 
   createOrder(businessId: String, order: any) {
@@ -75,6 +76,21 @@ export class OrderServiceClient {
       );
   }
 
+  updateOrderByStaff(id: String, order: any) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
+    this.options.headers = headers;
+    const url = this.baseUrl + '/api/staff/orders/' + id;
+    return this.http.put(url, order, this.options)
+      .map(
+        (res: Response) => {
+          const data = res.json();
+          return data;
+        }
+      );
+  }
+
   rejectOrder(id: String, businessId: String) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -102,6 +118,20 @@ export class OrderServiceClient {
       .map((response: Response) => {
         return response.json();
       });
+  }
+
+  findOrderByStaffAndId(orderId: string) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
+    this.options.headers = headers;
+
+    const url = this.baseUrl + '/api/staff/orders/' + orderId;
+    return this.http.get(url, this.options)
+      .map((response: Response) => {
+        return response.json();
+      });
+
   }
 
   findOrderByBusinessId(businessId: String) {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {OrderServiceClient} from '../../../services/order.service.client';
 import {ActivatedRoute, Router} from '@angular/router';
 import {BusinessServiceClient} from '../../../services/business.service.client';
@@ -6,15 +6,13 @@ import {ServiceClient} from '../../../services/service.client';
 import {OrderItemServiceClient} from '../../../services/orderItem.service.client';
 import {UserServiceClient} from '../../../services/user.service.client';
 import {SharedService} from '../../../services/shared.service';
-import {NgForm} from '@angular/forms';
 
 @Component({
-  selector: 'app-owner-order-detail',
-  templateUrl: './owner-order-detail.component.html',
-  styleUrls: ['./owner-order-detail.component.css']
+  selector: 'app-admin-order-detail',
+  templateUrl: './admin-order-detail.component.html',
+  styleUrls: ['./admin-order-detail.component.css']
 })
-export class OwnerOrderDetailComponent implements OnInit {
-  @ViewChild('f') orderDetailsForm: NgForm;
+export class AdminOrderDetailComponent implements OnInit {
   businessId: string;
   order: {};
   orderId: string;
@@ -32,7 +30,6 @@ export class OwnerOrderDetailComponent implements OnInit {
   loading = false;
   internalBusiness = {};
   yelpId: string;
-  staffs = [];
 
   constructor(private orderService: OrderServiceClient,
               private router: Router,
@@ -58,11 +55,6 @@ export class OwnerOrderDetailComponent implements OnInit {
     this.serviceClient.findServices(this.businessId, '')
       .subscribe( (services) => {
         this.services = services;
-      });
-
-    this.userService.findStaffsByBusinessId(this.businessId)
-      .subscribe( (staffs) => {
-        this.staffs = staffs;
       });
   }
 
@@ -142,27 +134,6 @@ export class OwnerOrderDetailComponent implements OnInit {
           this.loadOrderItems();
         });
     }
-  }
-
-  cancelOrder() {
-    this.order['status'] = 'rejected';
-    this.orderService.updateOrder(this.orderId, this.businessId, this.order)
-      .subscribe(
-        (order: any) => {
-          this.router.navigate(['/owner', 'business', this.businessId, 'order']);
-        }
-      );
-  }
-
-  assignStaff() {
-    const staffId = this.orderDetailsForm.value.staffId;
-    this.order['staff_id'] = staffId;
-
-    this.orderService.updateOrder(this.orderId, this.businessId, this.order)
-      .subscribe( (updatedOrder: any) => {
-        this.order = updatedOrder;
-      });
-
   }
 
   deleteItem(oItem: any) {

@@ -2,8 +2,7 @@
 <div class="container-fluid">
   <ul class="nav nav-tabs nav-justified">
     <li role="presentation"><a [routerLink]="['/admin/user']">Customers</a></li>
-    <li role="presentation" class="active"><a [routerLink]="['/admin/business']">businesses</a></li>
-    <li role="presentation"><a [routerLink]="['/admin/order']">Orders</a></li>
+    <li role="presentation" class="active"><a [routerLink]="['/admin/business']">Business</a></li>
       <li role="presentation"><a [routerLink]="['/profile']">Profile</a></li>
   </ul>
 
@@ -49,5 +48,8 @@
               class="btn btn-primary form-control"
               [disabled]="!f.valid">Update Business</button>
     </div>
+    <a [routerLink]="['/admin/business/', businessId, 'order']">
+      <button type="submit" class="btn btn-success form-control"> Orders</button>
+    </a>
   </form>
 </div>

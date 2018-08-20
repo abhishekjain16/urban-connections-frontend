@@ -5,47 +5,71 @@
     <li role="presentation"><a [routerLink]="['/profile']">Profile</a></li>
   </ul>
 
-  <h3 class="text-center">Edit Order {{order['name']}}</h3>
-  <form #f="ngForm">
-    <div class="container-fluid profile clearfix">
-      <label for="name" class="label">Name</label>
-      <input type="text"
-             id="name"
-             name="name"
-             [(ngModel)]="name"
-             class="form-control" />
-
-      <label for="minimum_order_charge" class="label">Minimum Order</label>
-      <input type="text"
-             id="minimum_order_charge"
-             name="minimum_order_charge"
-             [(ngModel)]="minimum_order_charge"
-             class="form-control" />
-
-      <label for="service_charge" class="label">Service Charge</label>
-      <input type="text"
-             id="service_charge"
-             name="service_charge"
-             [(ngModel)]="service_charge"
-             class="form-control" />
-
-      <label for="website" class="label">Website</label>
-      <input type="text"
-             id="website"
-             name="website"
-             [(ngModel)]="website"
-             class="form-control" />
-
-      <div *ngIf="!this.businessId">
-        <label for="active" class="label">Active?</label>
-        <input type="checkbox"
-               id="active"
-               name="active"
-               [(ngModel)]="active">
+  <h3 class="text-center">Order {{order['order_number']}}</h3>
+  <div class="cart col-xs-12 col-sm-4">
+    <ul class="list-group">
+      <li class="list-group-item active">
+        <div class="row">
+          <div class="col-xs-6 col-sm-6">
+            Item
+          </div>
+          <div class="col-xs-3">
+            Qty
+          </div>
+          <div class="col-xs-3">
+            Price
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item" *ngFor="let item of items">
+        <div class="row">
+          <div class="col-xs-6">
+            {{item.name}}
+          </div>
+          <div class="col-xs-3">
+            <a class="glyphicon glyphicon-minus-sign" (click)="reduceQuantity(item)">
+            </a>
+            {{item.quantity}}
+            <a class="glyphicon glyphicon-plus-sign" (click)="addQuantity(item)">
+            </a>
+          </div>
+          <div class="col-xs-3">
+            ${{item.price}}
+            <a class="glyphicon glyphicon-remove-sign pull-right" (click)="deleteItem(item)">
+            </a>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div class="cost_summary">
+      <div class="summary">
+        SubTotal:
+        <span>${{order['sub_total']}}</span>
       </div>
-      <button type="submit"
-              class="btn btn-primary form-control"
-              [disabled]="!f.valid">Update Business</button>
+      <div class="summary">
+        Tax:
+        <span>${{order['tax']}}</span>
+      </div>
+      <div class="summary">
+        Visiting Charge:
+        <span>${{order['visitCharges']}}</span>
+      </div>
+      <div class="summary">
+        Total:
+        <span>${{order['total']}}</span>
+      </div>
+    </div>
+  </div>
+  <form #f="ngForm">
+    <div [ngSwitch]="status">
+      <div *ngSwitchCase="'paid'">
+        <button (click)="completeOrder()" class="btn btn-success btn-block margin-top-button"
+        >Complete this Order</button>
+        <button (click)="cancelOrder()" class="btn btn-danger btn-block">
+          Cancel Order
+        </button>
+      </div>
     </div>
   </form>
+
 </div>

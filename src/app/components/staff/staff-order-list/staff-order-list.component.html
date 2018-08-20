@@ -6,13 +6,13 @@
     <li class="list-group-item active">
       <div class="row">
         <div class="col-xs-9 col-sm-6 col-md-3">
-          Name
+          Number
         </div>
         <div class="col-md-3 hidden-sm hidden-xs">
-          Staff
+          Status
         </div>
         <div class="col-sm-3 col-md-3 hidden-xs">
-          Active
+          Total
         </div>
         <div class="col-xs-3">
         </div>
@@ -22,17 +22,18 @@
     <li class="list-group-item" *ngFor="let order of orders">
       <div class="row">
         <div class="col-xs-9 col-sm-6 col-md-3">
-          {{order.total}}
+          <a [routerLink]="['/staff', 'order', order['id']]">
+            {{order['order_number']}}
+          </a>
         </div>
         <div class="col-md-3 hidden-sm hidden-xs">
-          {{order.status}}
+          {{order['status']}}
         </div>
         <div class="col-sm-3 col-md-3 hidden-xs">
-          {{order.total}}
-          {{order.address}}
+          {{order['total']}}
         </div>
         <div class="col-xs-3">
-          <a class="pull-right" [routerLink]="['/owner', 'business', business.id]">
+          <a class="pull-right" [routerLink]="['/staff', 'order', order['id']]">
             <span class="glyphicon glyphicon-edit"></span>
           </a>
         </div>

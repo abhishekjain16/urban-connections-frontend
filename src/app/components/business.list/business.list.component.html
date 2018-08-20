@@ -3,16 +3,44 @@
     <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
     <a [routerLink]="['/']" class="white pull-left"><span class="glyphicon glyphicon-chevron-left"></span></a>
     <span class="food-center">UC</span>
-    <a [routerLink]="['/register']" class="white pull-right">| Register  </a>
-    <a [routerLink]="['/login']" class="white pull-right">  Login | </a>
-
-    <div class="login pull-right" *ngIf="this.user">
+    <div class="login pull-right" *ngIf="this.user;else login">
       <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Account
           <span class="caret"></span>
         </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a [routerLink]="['/profile']">
+              My Profile
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/orders']">
+              My Orders
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
+    <ng-template #login>
+      <div class="dropdown pull-right">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Account
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a [routerLink]="['/login']">
+              Login
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/register']">
+              Sign UP
+            </a>
+          </li>
+        </ul>
+      </div>
+    </ng-template>
   </div>
 </header>
 <div class="container">
