@@ -27,7 +27,8 @@ export class OrderServiceClient {
     'findOrderByBusinessId': this.findOrderByBusinessId,
     'findOrdersForUser': this.findOrdersForUser,
     'findOrderByBusinessIdForCustomer': this.findOrderByBusinessIdForCustomer,
-    'findOrderByStaff': this.findOrderByStaff
+    'findOrderByStaff': this.findOrderByStaff,
+    'findAllCustomerOrders': this.findAllCustomerOrders
   };
 
   createOrder(businessId: String, order: any) {
@@ -138,6 +139,18 @@ export class OrderServiceClient {
     if (state) {
       url = url + 'state=' + state;
     }
+    return this.http.get(url, this.options)
+      .map((response: Response) => {
+        return response.json();
+      });
+
+  }
+  findAllCustomerOrders() {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
+    this.options.headers = headers;
+    const url = this.baseUrl + '/api/orders/all';
     return this.http.get(url, this.options)
       .map((response: Response) => {
         return response.json();

@@ -51,6 +51,7 @@ export class OrderDetailComponent implements OnInit {
           this.orderId = params['id'];
           this.loadBusiness();
           this.loadOrders();
+          this.loading = false;
         });
     this.loadOrderItems();
 
@@ -63,14 +64,7 @@ export class OrderDetailComponent implements OnInit {
   loadBusiness() {
     this.businessService.findInternalBusinessById(this.businessId)
       .subscribe( (business) => {
-        this.yelpId = business['yelp_id'];
-        this.businessService.SearchBusinessById(this.yelpId)
-          .subscribe( (result) => {
-            this.name = result.name;
-            this.image = result.image_url;
-            this.business = result;
-            this.loading = false;
-          });
+        this.name = business['name'];
       });
   }
 

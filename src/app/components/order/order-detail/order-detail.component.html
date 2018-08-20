@@ -40,20 +40,7 @@
 </header>
 <div class="container food-bottombuff">
   <div class="details">
-    <div class="image-container col-xs-3 col-sm-2">
-      <a [routerLink]="['/business', this.businessId]">
-        <img class="image thumbnail" src="{{business['image_url']}}" />
-      </a>
-    </div>
     <h2>{{name}}</h2>
-    <div>
-      <rating [(ngModel)]="business['rating']"
-              readonly="true"
-              [float]="true">
-      </rating>
-      <span class="reviews">Reviews: {{business['review_count']}}</span>
-      <div class="costing clearfix">{{business['price']}}</div>
-    </div>
     <h3>Services</h3>
   </div>
   <div class="row">
@@ -77,7 +64,6 @@
       </ul>
     </div>
     <div class="cart col-xs-12 col-sm-4">
-      <h3>{{name}}</h3>
       <ul class="list-group">
         <li class="list-group-item active">
           <div class="row">

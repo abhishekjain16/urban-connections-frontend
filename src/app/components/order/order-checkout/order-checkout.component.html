@@ -1,3 +1,144 @@
-<p>
-  order-checkout works!
-</p>
+<header>
+  <div class="container-fluid food-center">
+    <a [routerLink]="['/business', businessId,'order',orderId]" class="white pull-left"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    <span class="food-center">UC</span>
+
+    <div class="login pull-right" *ngIf="this.user">
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Account
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a [routerLink]="['/profile']">
+              My Profile
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/orders']">
+              My Orders
+            </a>
+          </li>
+          <li>
+            <a (click)="logout()">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="container food-bottombuff">
+  <div class="details">
+    <h2>{{name}}</h2>
+    <h3>Delivery Address</h3>
+  </div>
+  <form (ngSubmit) = "update()" #f="ngForm">
+
+    <div class="row">
+      <div class="delivery col-xs-12 col-sm-8">
+        <label for="street" class="label">Street Address</label>
+        <input type="text"
+               id="street"
+               name="street"
+               [(ngModel)]="street"
+               class="form-control" />
+        <label for="street2" class="label">Apt number</label>
+        <input type="text"
+               id="street2"
+               name="street2"
+               [(ngModel)]="street2"
+               class="form-control" />
+
+        <label class="label"
+               for="zipCode">
+          zipCode
+        </label>
+        <input type="text"
+               id="zipCode"
+               name="zipCode"
+               [(ngModel)]="zipCode"
+               class="form-control" />
+        <label class="label"
+               for="city">
+          city
+        </label>
+        <input type="text"
+               id="city"
+               name="city"
+               [(ngModel)]="city"
+               class="form-control" />
+        <label class="label"
+               for="state">
+          state
+        </label>
+        <input type="text"
+               id="state"
+               name="state"
+               [(ngModel)]="state"
+               class="form-control" />
+        <a [routerLink]="['/business', businessId, 'order', orderId]"
+           class="btn btn-block btn-default">
+          Back
+        </a>
+      </div>
+      <div class="cart col-xs-12 col-sm-4">
+        <h3>{{name}}</h3>
+        <ul class="list-group">
+          <li class="list-group-item active">
+            <div class="row">
+              <div class="col-xs-6 col-sm-6">
+                Item
+              </div>
+              <div class="col-xs-3">
+                Qty
+              </div>
+              <div class="col-xs-3">
+                Price
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item" *ngFor="let item of items">
+            <div class="row">
+              <div class="col-xs-6">
+                {{item.name}}
+              </div>
+              <div class="col-xs-3">
+                {{item.quantity}}
+              </div>
+              <div class="col-xs-3">
+                ${{item.price}}
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div class="cost_summary">
+          <div class="summary">
+            SubTotal:
+            <span>${{subTotal}}</span>
+          </div>
+          <div class="summary">
+            Tax:
+            <span>${{tax}}</span>
+          </div>
+          <div class="summary">
+            Service Charge:
+            <span>${{visitCharges}}</span>
+          </div>
+          <div class="summary">
+            Total:
+            <span>${{total}}</span>
+          </div>
+        </div>
+        <div>
+          <button type="submit"
+                  class="btn btn-lg btn-success btn-block"
+                  [disabled]="!f.valid">
+            Complete
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<footer>
+</footer>

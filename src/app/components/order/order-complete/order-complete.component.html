@@ -1,3 +1,100 @@
-<p>
-  order-complete works!
-</p>
+<header>
+  <div class="container-fluid food-center">
+    <span class="food-center">UC</span>
+    <div class="login pull-right" *ngIf="this.user">
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Account
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a [routerLink]="['/profile']">
+              My Profile
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/orders']">
+              My Orders
+            </a>
+          </li>
+          <li>
+            <a (click)="logout()">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="container food-bottombuff">
+  <h2 class="text-center text-success">{{stateText()}}</h2>
+  <div class="row">
+    <div class="address col-xs-6 col-sm-4">
+      Delivery Address:
+      <p>{{street}}</p>
+      <p>{{street2}}</p>
+      <p>{{city}}</p>
+      <p>{{state}} - {{zipCode}}</p>
+    </div>
+    <div class="col-xs-6 col-sm-4">
+      <a [routerLink]="['/business', yelpId]">
+        <h2 class="text-center text-capitalize">{{name}}</h2>
+      </a>
+    </div>
+    <div class="cart col-xs-12 col-sm-4">
+      <h3>{{name}}</h3>
+      <ul class="list-group">
+        <li class="list-group-item active">
+          <div class="row">
+            <div class="col-xs-6 col-sm-6">
+              Item
+            </div>
+            <div class="col-xs-3">
+              Qty
+            </div>
+            <div class="col-xs-3">
+              Price
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item" *ngFor="let item of items">
+          <div class="row">
+            <div class="col-xs-6">
+              {{item.name}}
+            </div>
+            <div class="col-xs-3">
+              {{item.quantity}}
+            </div>
+            <div class="col-xs-3">
+              ${{item.price}}
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="cost_summary">
+        <div class="summary">
+          SubTotal:
+          <span>${{subTotal}}</span>
+        </div>
+        <div class="summary">
+          Tax:
+          <span>${{tax}}</span>
+        </div>
+        <div class="summary">
+          Service Charge:
+          <span>${{visitCharges}}</span>
+        </div>
+        <div class="summary">
+          Total:
+          <span>${{total}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br/>
+  <a [routerLink]="['/']"
+     class="btn btn-block btn-primary">
+    Go to Homepage
+  </a>
+</div>
+<footer>
+</footer>

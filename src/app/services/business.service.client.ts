@@ -62,7 +62,7 @@ export class BusinessServiceClient {
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', 'Token token=' + this.storage.get('access_token'));
     this.options.headers = headers;
-    const url = environment.baseUrl + '/api/business/' + id + '/internal';
+    const url = environment.baseUrl + '/api/business/' + id + '/my_business';
     return this.http.get(url, this.options)
       .map((response: Response) => {
         return response.json();
