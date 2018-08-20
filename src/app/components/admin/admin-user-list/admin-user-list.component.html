@@ -3,8 +3,11 @@
   <ul class="nav nav-tabs nav-justified">
     <li role="presentation" class="active"><a [routerLink]="['/admin/user']">Customers</a></li>
     <li role="presentation"><a [routerLink]="['/admin/business']">Businesses</a></li>
-      <li role="presentation"><a [routerLink]="['/profile']">Profile</a></li>
+    <li role="presentation"><a [routerLink]="['/profile']">Profile</a></li>
   </ul>
+  <a [routerLink]="['/admin', 'user', 'new']">
+    <button type="submit" class="btn btn-primary form-control"> Click Here to Add Customer</button>
+  </a>
   <ul class="list-group">
     <li class="list-group-item active">
       <div class="row">

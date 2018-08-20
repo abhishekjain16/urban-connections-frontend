@@ -28,6 +28,7 @@ import {OrderDetailComponent} from './components/order/order-detail/order-detail
 import {OrderCheckoutComponent} from './components/order/order-checkout/order-checkout.component';
 import {OrderCompleteComponent} from './components/order/order-complete/order-complete.component';
 import {OrderListComponent} from './components/order/order-list/order-list.component';
+import {AdminUserRegisterComponent} from './components/admin/admin-user-register/admin-user-register.component';
 
 const APP_ROUTES: Routes = [
   {path: '', component : BusinessSearchComponent},
@@ -42,6 +43,7 @@ const APP_ROUTES: Routes = [
   {path: 'business/:businessId/order/:id/checkout', component: OrderCheckoutComponent, canActivate: [AuthGuard]},
   {path: 'business/:businessId/order/:id/complete', component: OrderCompleteComponent, canActivate: [AuthGuard]},
   {path: 'admin/user', component: AdminUserListComponent, canActivate: [AuthGuard]},
+  {path: 'admin/user/new', component: AdminUserRegisterComponent, canActivate: [AuthGuard]},
   {path: 'admin/user/:id', component: AdminUserDetailComponent, canActivate: [AuthGuard]},
   {path: 'admin/business', component: AdminBusinessListComponent, canActivate: [AuthGuard]},
   {path: 'admin/business/:id', component: AdminBusinessDetailComponent, canActivate: [AuthGuard]},

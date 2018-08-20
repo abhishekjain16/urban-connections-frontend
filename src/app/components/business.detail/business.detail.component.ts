@@ -55,8 +55,8 @@ export class BusinessDetailComponent implements OnInit {
         this.businessService.findBusinessByYelpId(this.businessId)
           .subscribe(
             (internalBusiness: any) => {
-              this.internalBusiness = internalBusiness;
-              if (this.internalBusiness) {
+              if (internalBusiness) {
+                this.internalBusiness = internalBusiness;
                 this.orderService.findOrderByBusinessIdForCustomer(this.internalBusiness['id'], 'cart')
                   .subscribe(
                     (order: any) => {
